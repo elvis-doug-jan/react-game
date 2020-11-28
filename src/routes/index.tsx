@@ -1,26 +1,17 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 
-import { ConnectedRouter } from 'connected-react-router'
-import { History } from 'history'
-
-import App from '@/App'
 import GlobalStyle from '@/assets/styles/global'
+import { PlayerInfoPage } from '@/pages/playerInfo'
 
-interface RouterProps {
-  history: History
-}
-
-const Routes = (props: RouterProps) => {
-  const { history } = props
-
+const Routes = () => {
   return (
-    <ConnectedRouter history={history}>
+    <Router>
       <Switch>
-        <Route path="/" exact component={App} />
+        <Route path="/" exact component={PlayerInfoPage} />
         <GlobalStyle />
       </Switch>
-    </ConnectedRouter>
+    </Router>
   )
 }
 
