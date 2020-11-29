@@ -1,14 +1,13 @@
 import React from 'react'
 
+import * as S from './App.style'
 import Routes from './routes'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Routes />
-      </header>
-    </div>
+    <S.GlobalContainer>
+      <Routes />
+    </S.GlobalContainer>
   )
 }
 
