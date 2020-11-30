@@ -71,16 +71,55 @@ export const CardArea = ({ showCard, isShuffle, hideNumbers }: ICardArea) => {
     }
   }
 
+  const showCardsSelected = (index: number, cardNumber: number) => {
+    return index === indexFirstCardSelected || index === indexSecondCardSelected
+      ? cardNumber
+      : '???'
+  }
+
+  // const hiddenCard = (index: number): boolean => {
+  //   if (firstCardNumberSelected === secondCardNumberSelected) return true
+  //   return false
+  // }
+
+  // const keepingShowCard = (index: number, cardNumber: number) => {
+  //   if (indexFirstCardSelected !== -1 && indexSecondCardSelected !== -1) {
+  //     if (firstCardNumberSelected === secondCardNumberSelected) {
+  //       setIndexFirstToShow(prevState => {
+  //         prevState.push(index)
+  //         return prevState
+  //       })
+
+  //       setIndexSecondToShow(prevState => {
+  //         prevState.push(index)
+  //         return prevState
+  //       })
+
+  //       if (indexFirstToShow.includes(index) || indexSecondToShow.includes(index)) return true
+  //     }
+  //   }
+  //   if (indexFirstCardSelected === -1 || indexSecondCardSelected === -1) return true
+  //   return false
+  // }
+
   useEffect(() => shuffle())
 
   return (
     <Row flex_wrap="wrap" justify_content="center">
       {sortedList.map((cardNumber, index) => (
-        <Cards key={index} onClick={() => showCardSelected(cardNumber, index)}>
-          {index === indexFirstCardSelected || index === indexSecondCardSelected
-            ? cardNumber
-            : '???'}
-        </Cards>
+        <>
+          <Cards
+            key={index}
+            onClick={() => showCardSelected(cardNumber, index)}
+            keepingCard
+            // keepingCard={keepingShowCard(index, cardNumber)}
+          >
+            {showCardsSelected(index, cardNumber)}
+          </Cards>
+          {/* {<Cards key={index}>
+            {cardNumber}
+          </Cards>} */}
+        </>
       ))}
     </Row>
   )

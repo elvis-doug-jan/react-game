@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const Cards = styled.div`
+interface ICard {
+  keepingCard?: boolean
+}
+
+export const Cards = styled.div<ICard>`
   background-color: white;
   min-height: 180px;
   min-width: 100px;
@@ -12,4 +16,6 @@ export const Cards = styled.div`
   border-radius: 7px;
   box-shadow: 0 0.8em 1em lightgray;
   margin: 10px;
+
+  display: ${props => !props.keepingCard && 'none'};
 `
