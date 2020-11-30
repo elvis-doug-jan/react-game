@@ -1,30 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
 
+import { Container } from '@/components/Modal/modal.styles'
 import { Button } from '@/components/UI/Buttons/button.styles'
 import { Row } from '@/components/UI/Row/row.styled'
 
+import { CardArea } from './components/cardArea.component'
+import { RoundCounter } from './components/roundCounter.component'
+
 export const GameCenter = () => {
-  const [playerName, getPlayerName] = useState('')
+  const [isShuffle, setIsShuffle] = useState(true)
+  const [roundCount, setRoundCount] = useState(0)
+  const [clickCount, setClickCount] = useState(0)
 
-  useEffect(() => {
-    const playerNameData = localStorage.getItem('playerName')
+  const ShowCard = (numberCard: number) => {
+    setIsShuffle(false)
 
-    getPlayerName(playerNameData || '')
-  }, [])
+    setClickCount(prevState => {
+      prevState += 1
+      return prevState
+    })
 
-  const exitGamePage = () => {
-    localStorage.clear()
+    if (clickCount === 2) {
+      setRoundCount(prevState => {
+        prevState += 1
+        return prevState
+      })
+
+      setClickCount(0)
+    }
   }
 
   return (
-    <div>
-      <Row>Esse é o core do jogo. {playerName}</Row>
-      <Row justify_content="center">
-        <Link to="/">
-          <Button onClick={() => exitGamePage()}>Sair</Button>
-        </Link>
+    <Container width="93vw" height="95vh">
+      <CardArea showCard={ShowCard} isShuffle={isShuffle} hideNumbers />
+      <Row justify_content="space-between">
+        <Button>Ranking</Button>
+        <RoundCounter roundCounter={roundCount} />
+        <Button>Reiniciar a partida</Button>
       </Row>
-    </div>
+    </Container>
   )
 }
