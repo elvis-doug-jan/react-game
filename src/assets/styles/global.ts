@@ -10,7 +10,8 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font-family: 'Maven Pro', sans-serif;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
   }
 

@@ -2,6 +2,10 @@ import React from 'react'
 
 import * as S from './card.styles'
 
-export const Cards = () => {
-  return <S.Container>Isso é uma carta</S.Container>
+interface ICards {
+  cardNumber: number
+}
+
+export const Cards = ({ cardNumber }: ICards) => {
+  return <S.Cards>Isso é uma carta</S.Cards>
 }
